@@ -1,0 +1,26 @@
+(ns picerija.baza
+   (:require [clojure.java.jdbc :as sql]))
+
+(def connection 
+  {:classname "com.mysql.jdbc.Driver"
+   :subprotocol "mysql"
+   :subname "//localhost/showroom"
+   :user "root"
+   :password ""})
+
+(defn podaci []
+   (into [] (sql/query connection ["SELECT * FROM porudzbina, pizza WHERE porudzbina.pizzaID = pizza.pizzaID"])))
+
+(defn obrisi [id]
+  (sql/delete! connection :porudzbina ["porudzbinaid = ?" id])
+  )
+
+(defn podaciPizza []
+   (into [] (sql/query connection ["SELECT * FROM pizza"])))
+
+
+(defn podatakPorudzbina [id]
+  (into [] (sql/query connection ["SELECT * FROM porudzbina, pizza WHERE porudzbina.pizzaID = pizza.pizzaID && porudzbina.porudzbinaID=?" id])))
+
+(defn updatePorudzbina [id pizzaid kolicina]
+  (sql/update! connection :porudzbina {:porudzbinaid id :pizzaid pizzaid :kolicina kolicina} ["porudzbinaid = ?" id]))

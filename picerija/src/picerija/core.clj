@@ -7,14 +7,36 @@
             [ring.util.response :as ring] 
             [compojure.route :as route]
             [compojure.core :refer [defroutes GET POST]]
-            [picerija.pojedinacniPrikazi :as prikazi])
+            [picerija.pojedinacniPrikazi :as prikazi]
+            [picerija.baza :as b])
 )
 
 (defn pocetna []
    (prikazi/index )
   )
 
+(defn porudzbine []
+   (prikazi/porudzbine (b/podaci))
+  )
+
+(defn obrisi [id]
+  (b/obrisi id)
+  (ring/redirect "/porudzbine")
+  )
+
+(defn izmeni [id]
+  (prikazi/izmena (b/podatakPorudzbina id) (b/podaciPizza))
+  )
+
+(defn izmeniPorudzbinu [id pizzaid kolicina]
+  (b/updatePorudzbina id pizzaid kolicina) 
+  (ring/redirect "/porudzbine")
+  )
 
 (defroutes my_routes
  (GET "/" [] (pocetna))
+ (GET "/porudzbine" [] (porudzbine))
+ (GET "/izmeni/:id" [id] (izmeni id))
+ (GET "/obrisi/:id" [id] (obrisi id))
+ (POST "/update" [pizzaid kolicina id] (izmeniPorudzbinu id pizzaid kolicina))
  (route/resources "/"))

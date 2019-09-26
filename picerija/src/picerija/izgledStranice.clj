@@ -7,7 +7,7 @@
   (h/html5
     [:head
      [:title "Pizzerija"]
-     (include-css "/css/bootstrap.css" "js/bootstrap.js" "js/main.js" "js/jquery.js" "/css/bootstrap.min.css" "/css/responsive.css" "css/style.css" "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css")
+     (include-css "/css/bootstrap.css" "css/style1.css" "js/bootstrap.js" "js/main.js" "js/jquery.js" "/css/bootstrap.min.css" "/css/responsive.css" "css/style.css" "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css")
      ]
     [:body {:class "homepage"}
      [:header {:id "header"}
@@ -25,9 +25,9 @@
 
                 [:div {:class "collapse navbar-collapse navbar-right"}
                     [:ul {:class "nav navbar-nav"}
-                     [:li [:a {:href="/porudzbine"} "Porudzbine"]]
-                     [:li [:a {:href="/novaporudzbina"} "Dodaj porudzbinu"]]
-                     [:li [:a {:href="/pretraga"} "Pretrazi pizze"]]
+                     [:li [:a {:href "/porudzbine"} "Porudzbine"]]
+                     [:li [:a {:href "/novaporudzbina"} "Dodaj porudzbinu"]]
+                     [:li [:a {:href "/pretraga"} "Pretrazi pizze"]]
 					
                     ]
                 ]
