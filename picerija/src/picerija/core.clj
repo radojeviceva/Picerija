@@ -6,7 +6,15 @@
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
             [ring.util.response :as ring] 
             [compojure.route :as route]
-            [compojure.core :refer [defroutes GET POST]])
+            [compojure.core :refer [defroutes GET POST]]
+            [picerija.pojedinacniPrikazi :as prikazi])
 )
+
+(defn pocetna []
+   (prikazi/index )
+  )
+
+
 (defroutes my_routes
-  (route/resources "/"))
+ (GET "/" [] (pocetna))
+ (route/resources "/"))
