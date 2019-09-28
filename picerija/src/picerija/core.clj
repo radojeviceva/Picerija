@@ -33,10 +33,21 @@
   (ring/redirect "/porudzbine")
   )
 
+(defn novaPor []
+  (prikazi/novaPorudzbina (b/podaciPizza))
+  )
+
+(defn dodajPorudzbinu [pizzaid kolicina]
+  (b/dodaj pizzaid kolicina)
+   (ring/redirect "/porudzbine")
+  )
+
 (defroutes my_routes
  (GET "/" [] (pocetna))
  (GET "/porudzbine" [] (porudzbine))
  (GET "/izmeni/:id" [id] (izmeniPor id))
  (GET "/obrisi/:id" [id] (obrisi id))
  (POST "/update" [pizzaid kolicina id] (izmeniPorudzbinu id pizzaid kolicina))
+ (GET "/novaporudzbina" [] (novaPor))
+ (POST "/add" [pizza kolicina] (dodajPorudzbinu pizza kolicina))
  (route/resources "/"))

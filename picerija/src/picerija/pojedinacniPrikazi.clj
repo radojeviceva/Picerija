@@ -98,3 +98,67 @@
         ]
     )
   )
+
+
+(defn dodajforma [pizze]
+  (form/form-to [:post "/add"]
+    (anti-forgery/anti-forgery-field)
+      [:div {:class "col-md-6"}
+        [:label {:for "pizza"} "Pizza"]
+         [:select {:name "pizza" :class "form-control" :id "pizza"}
+              (map (fn [pizza]
+                 [:option {:value (:pizzaid pizza)} (:nazivvrste pizza)]) pizze)
+              ]
+         ]
+         [:div {:class "col-md-12"}
+          [:label {:for "kolicina"} "Kolicina"]
+           [:input {:type "number" :name "kolicina" :class "form-control" :id "kolicina" :placeholder "Kolicina"}]
+           ]
+         [:div {:class "col-md-12"}
+          [:label {:for "dugme"} ]
+           [:input {:type "submit" :name "dugme" :class "form-control btn-info" :id "dugme" :value "Sacuvaj"}]
+           ]
+  )
+  )
+
+(defn novaPorudzbina [pizze]
+  (izgledSvega/izgled
+     [:section {:id "porudzbina"}
+     [:div {:class "container"}
+          [:div {:class "center wow fadeInDown"}
+                [:h2 "Dodaj porudzbinu"]
+                 [:p {:class "lead"} "Dodavanje nove porudzbine"]
+             ]
+
+             [:div {:class "row"}
+                 [:div  {:class "porudzbine"}
+                  (dodajforma pizze)
+                  ]
+                 ]
+             ]
+     ]
+    )
+  )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

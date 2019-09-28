@@ -24,3 +24,6 @@
 
 (defn updatePorudzbina [id pizzaid kolicina]
   (sql/update! connection :porudzbina {:porudzbinaid id :pizzaid pizzaid :kolicina kolicina} ["porudzbinaid = ?" id]))
+
+(defn dodaj [pizzaid kolicina]
+  (sql/insert! connection :porudzbina [:pizzaid :kolicina :datumpreuzimanja] [pizzaid (read-string kolicina) (java.time.LocalDateTime/now)]))
