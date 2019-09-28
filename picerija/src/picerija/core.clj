@@ -24,7 +24,7 @@
   (ring/redirect "/porudzbine")
   )
 
-(defn izmeni [id]
+(defn izmeniPor [id]
   (prikazi/izmena (b/podatakPorudzbina id) (b/podaciPizza))
   )
 
@@ -36,7 +36,7 @@
 (defroutes my_routes
  (GET "/" [] (pocetna))
  (GET "/porudzbine" [] (porudzbine))
- (GET "/izmeni/:id" [id] (izmeni id))
+ (GET "/izmeni/:id" [id] (izmeniPor id))
  (GET "/obrisi/:id" [id] (obrisi id))
  (POST "/update" [pizzaid kolicina id] (izmeniPorudzbinu id pizzaid kolicina))
  (route/resources "/"))

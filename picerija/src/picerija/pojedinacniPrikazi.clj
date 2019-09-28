@@ -80,20 +80,21 @@
   )
 
 (defn izmena [porudzbina pizze]
-  (izgledSvega/izgled
+  (izgledSvega/izgled 
+
     [:section {:id "porudzbina"}
          [:div {:class "container"}
-            [:div {:class "center wow fadeInDown"}
-                 [:h2 "Izmeni porudzbinu"]
+          [:div {:class "center wow fadeInDown"}
+                [:h2 "Izmeni porudzbinu"]
                  [:p {:class "lead"} "Izmena porudzbine"]
              ]
 
              [:div {:class "row"}
                  [:div  {:class "porudzbine"}
-                 (izmenaforma porudzbina pizze)
+                (izmenaforma porudzbina pizze)
                     ]
                  ]
-             ]
-         ]
+            ]
+        ]
     )
   )

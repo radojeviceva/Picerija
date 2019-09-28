@@ -7,7 +7,7 @@
   (h/html5
     [:head
      [:title "Pizzerija"]
-     (include-css "/css/bootstrap.css" "css/style1.css" "js/bootstrap.js" "js/main.js" "js/jquery.js" "/css/bootstrap.min.css" "/css/responsive.css" "css/style.css" "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css")
+     (include-css "/css/bootstrap.css" "/css/style1.css" "/css/bootstrap.min.css" "/css/responsive.css" "/css/style.css" "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css")
      ]
     [:body {:class "homepage"}
      [:header {:id "header"}
