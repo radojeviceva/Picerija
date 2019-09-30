@@ -160,8 +160,7 @@
              [:td (:kolicina podatak)] 
             ] ) podaci)]
    ]
-]
- ]
+]]
   )
  
 (defn pretraga [sve trazeno podaci] 
