@@ -42,6 +42,14 @@
    (ring/redirect "/porudzbine")
   )
 
+(defn pretraga [pretrazeno filter]
+  (if (= filter "")
+    (do (prikazi/pretraga pretrazeno filter ""))
+    (prikazi/pretraga pretrazeno filter (b/podaciSearch filter)
+      ))
+  
+  )
+
 (defroutes my_routes
  (GET "/" [] (pocetna))
  (GET "/porudzbine" [] (porudzbine))
@@ -50,4 +58,6 @@
  (POST "/update" [pizzaid kolicina id] (izmeniPorudzbinu id pizzaid kolicina))
  (GET "/novaporudzbina" [] (novaPor))
  (POST "/add" [pizza kolicina] (dodajPorudzbinu pizza kolicina))
+ (GET "/pretraga" [] (pretraga false ""))
+ (POST "/pretraga" [filter] (pretraga true filter))
  (route/resources "/"))

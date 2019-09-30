@@ -20,8 +20,8 @@
    [:section {:id "porudzbine"}
         [:div {:class "container"}
            [:div
-                [:h2 "Porudzbine"]
-                [:p {:class "lead"} "Lista porudzbina"]
+                [:h2 "Porudčbine"]
+                [:p {:class "lead"} "Lista porudčbina"]
             ]
 
             [:div {:class "row"}
@@ -30,7 +30,7 @@
                        [:thead
                          [:tr
                            [:th "Pizza"]
-                           [:th "Kolicina"]
+                           [:th "Količina"]
                            [:th "Datum preuzimanja"]
                            [:th "Izmena"]
                            [:th "Brisanje"]
@@ -45,7 +45,7 @@
                                 [:td (:kolicina podatak)]
                                 [:td (.toString (:datumpreuzimanja podatak))] 
                                 [:td [:a {:class "btn btn-info" :href (str "/izmeni/" (h (:porudzbinaid podatak)))} "Izmeni" ]]
-                                [:td [:a {:class "btn btn-danger" :href (str "/obrisi/" (h (:porudzbinaid podatak)))} "Obrisi" ]]
+                                [:td [:a {:class "btn btn-danger" :href (str "/obrisi/" (h (:porudzbinaid podatak)))} "Obriši" ]]
                            ] ) podaci)]
   ]]]]]]  
  ))
@@ -64,7 +64,7 @@
                        ]
 
                       [:div {:class "col-md-12"}
-                        [:label {:for "kolicina"} "Kolicina"]
+                        [:label {:for "kolicina"} "Količina"]
                         [:input {:type "number" :name "kolicina" :class "form-control" :id "kolicina" :value (:kolicina porudzbina)}]
                      ]
                       [:div {:class "col-md-12"}
@@ -85,8 +85,8 @@
     [:section {:id "porudzbina"}
          [:div {:class "container"}
           [:div {:class "center wow fadeInDown"}
-                [:h2 "Izmeni porudzbinu"]
-                 [:p {:class "lead"} "Izmena porudzbine"]
+                [:h2 "Izmeni porudžbinu"]
+                 [:p {:class "lead"} "Izmena porudžbine"]
              ]
 
              [:div {:class "row"}
@@ -111,12 +111,12 @@
               ]
          ]
          [:div {:class "col-md-12"}
-          [:label {:for "kolicina"} "Kolicina"]
-           [:input {:type "number" :name "kolicina" :class "form-control" :id "kolicina" :placeholder "Kolicina"}]
+          [:label {:for "kolicina"} "Količina"]
+           [:input {:type "number" :name "kolicina" :class "form-control" :id "kolicina" :placeholder "Količina"}]
            ]
          [:div {:class "col-md-12"}
           [:label {:for "dugme"} ]
-           [:input {:type "submit" :name "dugme" :class "form-control btn-info" :id "dugme" :value "Sacuvaj"}]
+           [:input {:type "submit" :name "dugme" :class "form-control btn-info" :id "dugme" :value "Sačuvaj"}]
            ]
   )
   )
@@ -126,8 +126,8 @@
      [:section {:id "porudzbina"}
      [:div {:class "container"}
           [:div {:class "center wow fadeInDown"}
-                [:h2 "Dodaj porudzbinu"]
-                 [:p {:class "lead"} "Dodavanje nove porudzbine"]
+                [:h2 "Dodaj porudžbinu"]
+                 [:p {:class "lead"} "Dodavanje nove porudžbine"]
              ]
 
              [:div {:class "row"}
@@ -139,6 +139,57 @@
      ]
     )
   )
+ 
+(defn pretrazeno [podaci]
+  [:div {:id "tabela" :class "col-md-12"}
+   [:table {:class "table table-hover"}
+   [:thead
+     [:tr
+       [:th "Pizza"]
+       [:th "Cena pizze"]
+       [:th "Naručena količina"]
+     ]
+   ]
+    [:tbody
+      [:tr 
+        (map 
+          (fn [podatak]
+            [:tr
+             [:td (:nazivvrste podatak)]
+             [:td (:cenapizze podatak)]
+             [:td (:kolicina podatak)] 
+            ] ) podaci)]
+   ]
+]
+ ]
+  )
+ 
+(defn pretraga [sve trazeno podaci] 
+  (izgledSvega/izgled
+     [:section {:id "porudzbina"}
+     [:div {:class "container"}
+          [:div {:class "center wow fadeInDown"}
+                [:h2 "Pizze"]
+                 [:p {:class "lead"} "Pretraga po vrsti pizze"]
+             ]
+     [:div {:class "row"}
+     [:div  {:class "porudzbine"}
+
+		(form/form-to [:post "/pretraga"]
+    (anti-forgery/anti-forgery-field)
+     [:div {:class "col-md-12"}
+      
+   [:input {:clas "form-control" :id "filter" :name "filter" :placeholder "Pretraga po nazivu vrste pizze" :value trazeno}]
+   ]
+      [:div {:class "col-md-12"}
+   [:label {:for "dugme"}]
+   [:button {:class "btn btn-info form-control":type "submit" :name "dugme"} "Pretraži"]
+  ]
+  )
+  (if (= sve true) 
+    (do (if (empty? podaci) (do [:p {:class "lead"} "Pretraga po vrsti pizze"])) (pretrazeno podaci)))
+  ]]]]
+))
 
 
 

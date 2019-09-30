@@ -25,9 +25,9 @@
 
                 [:div {:class "collapse navbar-collapse navbar-right"}
                     [:ul {:class "nav navbar-nav"}
-                     [:li [:a {:href "/porudzbine"} "Porudzbine"]]
-                     [:li [:a {:href "/novaporudzbina"} "Dodaj porudzbinu"]]
-                     [:li [:a {:href "/pretraga"} "Pretrazi pizze"]]
+                     [:li [:a {:href "/porudzbine"} "Porudžbine"]]
+                     [:li [:a {:href "/novaporudzbina"} "Dodaj porudžbinu"]]
+                     [:li [:a {:href "/pretraga"} "Pretraži pizze"]]
 					
                     ]
                 ]

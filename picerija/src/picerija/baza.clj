@@ -27,3 +27,7 @@
 
 (defn dodaj [pizzaid kolicina]
   (sql/insert! connection :porudzbina [:pizzaid :kolicina :datumpreuzimanja] [pizzaid (read-string kolicina) (java.time.LocalDateTime/now)]))
+
+(defn podaciSearch [filter]
+  (into [] (sql/query connection ["SELECT *, SUM(porudzbina.kolicina) as broj FROM porudzbina, pizza WHERE porudzbina.pizzaID = pizza.pizzaID && pizza.nazivVrste LIKE ? group by pizza.pizzaID" (str "%" filter "%")]))
+  )
