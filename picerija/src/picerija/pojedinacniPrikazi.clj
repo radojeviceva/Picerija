@@ -20,8 +20,8 @@
    [:section {:id "porudzbine"}
         [:div {:class "container"}
            [:div
-                [:h2 "Porudčbine"]
-                [:p {:class "lead"} "Lista porudčbina"]
+                [:h2 "Porudžbine"]
+                [:p {:class "lead"} "Lista porudžbina"]
             ]
 
             [:div {:class "row"}
@@ -179,7 +179,7 @@
     (anti-forgery/anti-forgery-field)
      [:div {:class "col-md-12"}
       
-   [:input {:clas "form-control" :id "filter" :name "filter" :placeholder "Pretraga po nazivu vrste pizze" :value trazeno}]
+   [:input {:clas "form-control" :id "filter" :name "filter" :placeholder "Nazivu vrste pizze" :value trazeno}]
    ]
       [:div {:class "col-md-12"}
    [:label {:for "dugme"}]
@@ -187,7 +187,7 @@
   ]
   )
   (if (= sve true) 
-    (do (if (empty? podaci) (do [:p {:class "lead"} "Pretraga po vrsti pizze"])) (pretrazeno podaci)))
+    (do (pretrazeno podaci)))
   ]]]]
 ))
 
